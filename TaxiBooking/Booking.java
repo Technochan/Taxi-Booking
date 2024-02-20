@@ -1,28 +1,4 @@
-/*
-Zoho Question 
 
-
-The are 6 points(A,B,C,D,E,F) 15 KM apart 60 min travel between each, n taxis all taxis at A starting
-100 rs for first 5 KM and then 10 for each of the further KMs, rate from pickup to drop only
-pickup time example : 9 hrs, 15 hrs
-
-When a customer books a Taxi, a free taxi at that point is allocated
--If no free taxi is available at that point, a free taxi at the nearest point is allocated.
--If two taxi’s are free at the same point, one with lower earning is allocated
--If no taxi is free at that time, booking is rejected
-
-
-Input 1:
-Customer ID: 1
-Pickup Point: A
-Drop Point: B
-Pickup Time: 9
-
-Output 1:
-Taxi can be allotted.
-Taxi-1 is allotted
-
-*/
 import java.util.*;
 public class Booking
 {
@@ -30,22 +6,16 @@ public class Booking
     {
         // to find nearest
         int min = 999;
-
         //distance between pickup and drop
         int distanceBetweenpickUpandDrop = 0;
-
         //this trip earning
         int earning = 0;
-
         //when taxi will be free next
         int nextfreeTime = 0;
-
         //where taxi is after trip is over
         char nextSpot = 'Z';
-
         //booked taxi
         Taxi bookedTaxi = null;
-
         //all details of current trip as string
         String tripDetail = "";
         
@@ -75,8 +45,6 @@ public class Booking
             }
             
         }
-
-        //setting corresponding details to allotted taxi
         bookedTaxi.setDetails(true,nextSpot,nextfreeTime,bookedTaxi.totalEarnings + earning,tripDetail);
         //BOOKED SUCCESSFULLY
         System.out.println("Taxi " + bookedTaxi.id + " booked");
@@ -100,8 +68,6 @@ public class Booking
         List<Taxi> freeTaxis = new ArrayList<Taxi>();
         for(Taxi t : taxis)
         {   
-            //taxi should be free
-            //taxi should have enough time to reach customer before pickuptime
             if(t.freeTime <= pickupTime && (Math.abs((t.currentSpot - '0') - (pickupPoint - '0')) <= pickupTime - t.freeTime))
             freeTaxis.add(t);
 
